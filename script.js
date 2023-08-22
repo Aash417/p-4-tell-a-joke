@@ -109,6 +109,10 @@ const VoiceRSS = {
   },
 };
 
+function toggleBtn() {
+  button.disabled = !button.disabled;
+}
+
 function textToSpeecOutput(input) {
   VoiceRSS.speech({
     key: '7e04d58b1270477a9a3a8990e9442da2',
@@ -136,6 +140,9 @@ async function getJokes() {
       joke = data.joke;
       narrateJoke(joke);
     }
+
+    // disable button
+    toggleBtn();
   } catch (error) {
     console.error('bchaooo error..!', error);
   }
@@ -148,3 +155,6 @@ function narrateJoke(joke) {
   console.log(joke);
   textToSpeecOutput(joke);
 }
+
+button.addEventListener('click', getJokes);
+audioElement.addEventListener('ended', toggleBtn);

@@ -122,3 +122,21 @@ function test() {
 }
 test();
 
+// get jokes from api
+// async function getJokes() {
+// 	const apiUrl = "https://v2.jokeapi.dev/joke/Programming";
+// 	try {
+// 		const response = await fetch(apiUrl);
+// 		const data = await response.json();
+// 		if (data.setup) {
+// 			joke = `${data.setup} ${data.delivery}`;
+// 			console.log(joke);
+// 		} else {
+// 			joke = data.joke;
+// 			console.log(joke);
+// 		}
+// 	} catch (error) {
+// 		console.log("bchaooo error..!", error);
+// 	}
+// }
+// getJokes();

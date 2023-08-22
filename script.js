@@ -1,6 +1,7 @@
 const button = document.querySelector('#button');
 const audioElement = document.querySelector('#audio');
 
+// Text to speech api call
 // VoiceRSS Javascript SDK
 const VoiceRSS = {
   speech: function (e) {
@@ -108,10 +109,10 @@ const VoiceRSS = {
   },
 };
 
-function test() {
+function textToSpeecOutput(input) {
   VoiceRSS.speech({
     key: '7e04d58b1270477a9a3a8990e9442da2',
-    src: 'shut up looooodeee',
+    src: input,
     hl: 'en-us',
     v: 'Linda',
     r: 0,
@@ -120,23 +121,30 @@ function test() {
     ssml: false,
   });
 }
-test();
+// test();
 
-// get jokes from api
-// async function getJokes() {
-// 	const apiUrl = "https://v2.jokeapi.dev/joke/Programming";
-// 	try {
-// 		const response = await fetch(apiUrl);
-// 		const data = await response.json();
-// 		if (data.setup) {
-// 			joke = `${data.setup} ${data.delivery}`;
-// 			console.log(joke);
-// 		} else {
-// 			joke = data.joke;
-// 			console.log(joke);
-// 		}
-// 	} catch (error) {
-// 		console.log("bchaooo error..!", error);
-// 	}
-// }
-// getJokes();
+// Get jokes from jokes api
+async function getJokes() {
+  const apiUrl = 'https://v2.jokeapi.dev/joke/Programming';
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    if (data.setup) {
+      joke = `${data.setup} ${data.delivery}`;
+      narrateJoke(joke);
+    } else {
+      joke = data.joke;
+      narrateJoke(joke);
+    }
+  } catch (error) {
+    console.error('bchaooo error..!', error);
+  }
+}
+getJokes();
+
+// Combine jokes to textToSpeech
+
+function narrateJoke(joke) {
+  console.log(joke);
+  textToSpeecOutput(joke);
+}
